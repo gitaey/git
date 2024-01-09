@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sis.com.map.service.MapMapper">
+
+    <select id="noticeList" resultType="sis.com.map.service.NoticeVO">
+        select
+            nt_no,
+            nt_title
+        from
+            jngis_admin.board_notice_tb
+        where
+            nt_part = 'drone'
+        order by nt_no desc
+            limit 1
+    </select>
+
+    <select id="getTopojson" parameterType="String" resultType="sis.com.map.service.JsonVO">
+        select
+            id,
+            target,
+            value
+        from
+            jngis.lsmd_cont_ldreg_json
+        where 1=1
+          and target = #{target}
+    </select>
+
+    <select id="getJijuk" parameterType="String" resultType="sis.com.map.service.CodeVO">
+        select
+            resi_bupd_code as juso_code,
+            sido_nm || ' ' || sgg_nm  || ' ' || umd_nm || ' ' || ri_nm as juso_name
+        from
+            jngis_admin.cmt_bup_code
+        where
+            resi_bupd_code = #{jusoCode}
+          and del_ymd = ''
+    </select>
+
+</mapper>

@@ -1,0 +1,9 @@
+# Project exclude paths
+**/target/
+**/.idea/
+**/.settings/
+**/out/
+**/*.iml
+**/.project
+**/.classpath
+**/log4j2.xml
